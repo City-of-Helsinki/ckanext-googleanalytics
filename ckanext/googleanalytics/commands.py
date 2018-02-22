@@ -47,7 +47,7 @@ class LoadAnalytics(CkanCommand):
     """
     summary = __doc__.split('\n')[0]
     usage = __doc__
-    max_args = 3
+    max_args = 2
     min_args = 1
     TEST_HOST = None
     CONFIG = None
@@ -121,13 +121,13 @@ class LoadAnalytics(CkanCommand):
             raise Exception('Unable to create a service: {0}'.format(e))
 
         self.profile_id = get_profile_id(self.service)
-        if len(self.args) > 3:
+        if len(self.args) > 2:
             raise Exception('Too many arguments')
 
         given_start_date = None
-        if len(self.args) == 3:
-            given_start_date = datetime.datetime.strptime(self.args[2], '%Y-%m-%d').date()
-      
+        if len(self.args) == 2:
+            given_start_date = datetime.datetime.strptime(self.args[1], '%Y-%m-%d').date()
+
         packages_data = self.get_ga_data(start_date=given_start_date)
         self.save_ga_data(packages_data)
         log.info("Saved %s records from google" % len(packages_data))
@@ -177,16 +177,15 @@ class LoadAnalytics(CkanCommand):
         # If there is no last valid value found from database then we make sure to grab all values from start. i.e. 2014
         # We want to take minimum 2 days worth logs even latest_date is today
         floor_date = datetime.date(2014, 1, 1)
-        latest_date = None
 
         if start_date is not None:
             floor_date = start_date
         
         latest_date = PackageStats.get_latest_update_date()
         
-        if latest_date is not None:
+        if latest_date is not None and start_date is None:
             floor_date = latest_date - datetime.timedelta(days=2)
-        
+
         packages = {}
         queries = ['ga:pagePath=~%s' % PACKAGE_URL]
 
