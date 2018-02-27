@@ -37,7 +37,7 @@ msgstr "Sidvisningar sedan 2011:"
 #: ckanext/googleanalytics/templates/googleanalytics/snippets/dataset_stats.html:10
 #: ckanext/googleanalytics/templates/googleanalytics/snippets/resource_stats.html:10
 msgid "All time downloads:"
-msgstr "Nedladdningar sedan 2018"
+msgstr "Nedladdningar sedan 2018:"
 
 
 #: ckanext/googleanalytics/templates/googleanalytics/snippets/dataset_stats.html:24
