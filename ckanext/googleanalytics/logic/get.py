@@ -8,6 +8,7 @@ def most_visited_packages(context, data_dict):
 
     start_date = data_dict.get('start_date', None)
     end_date = data_dict.get('end_date', None)
+    limit = data_dict.get('limit', None)
 
     dataset_type = data_dict.get('type', 'dataset')
     if start_date:
@@ -15,7 +16,7 @@ def most_visited_packages(context, data_dict):
     if end_date:
         end_date = datetime.strptime(end_date, "%d-%m-%Y")
 
-    result = model.PackageStats.get_top(start_date=start_date, end_date=end_date, dataset_type=dataset_type)
+    result = model.PackageStats.get_top(start_date=start_date, end_date=end_date, dataset_type=dataset_type, limit=limit)
     packages = []
 
     for package in result['packages']:
