@@ -2,7 +2,12 @@
   <h2>{% trans %}Most viewed datasets{% endtrans %}</h2> 
     {% if data['table'] %}
     <table class="table table-condensed table-bordered table-striped">
-	  <tr>
+    <colgroup>
+        <col style="width: 80%" />
+        <col style="width: 10%" />
+        <col style="width: 10%" />
+        </colgroup>
+      <tr>
 	    <th>{% trans %}Dataset{% endtrans %}</th>
 	    <th>{% trans %}Last accessed date{% endtrans %}</th>
 	    <th>{% trans %}Number views (since recording started){% endtrans %}</th>
