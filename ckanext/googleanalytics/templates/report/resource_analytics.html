@@ -2,6 +2,11 @@
     <h2>{% trans %}Most downloaded resources{% endtrans %}</h2> 
   {% if data['table'] %}
        <table class="table table-condensed table-bordered table-striped">
+           <colgroup>
+               <col style="width: 80%" />
+               <col style="width: 10%" />
+               <col style="width: 10%" />
+           </colgroup>
    <tr>
      <th>{% trans %}Resource{% endtrans %}</th>
      <th>{% trans %}Last accessed date{% endtrans %}</th>
