@@ -1,5 +1,6 @@
 from ckan.common import OrderedDict
-from ckanext.googleanalytics.model import PackageStats,ResourceStats
+from ckan.plugins import toolkit
+from ckanext.googleanalytics.model import PackageStats, ResourceStats
 
 
 def google_analytics_dataset_report(last):
@@ -7,10 +8,20 @@ def google_analytics_dataset_report(last):
     Generates report based on google analytics data. number of views per package
     '''
     # get package objects corresponding to popular GA content
-    top_packages = PackageStats.get_top(limit=last)
+    result = PackageStats.get_top(limit=last)
+    packages = []
+
+    for package in result['packages']:
+        package_with_extras = toolkit.get_action('package_show')({}, {'id': package['package_id']})
+        package_with_extras['visits'] = package['visits']
+        package_with_extras['visit_date'] = package['visit_date']
+        packages.append(package_with_extras)
+
+    from operator import itemgetter
+    result['packages'] = sorted(packages, key=itemgetter('visits'), reverse=True)
 
     return {
-        'table' : top_packages.get("packages")
+        'table': result.get("packages")
     }
 
 def google_analytics_dataset_option_combinations():

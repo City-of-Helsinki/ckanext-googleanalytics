@@ -9,7 +9,7 @@
 	  </tr>
       {% for toppackage in table %}
 	  <tr>
-		<td>{{ h.link_to(toppackage.package_name, h.url_for(controller='package', action='read', id=toppackage.package_id)) }}</td>
+		<td>{{ h.link_to(h.get_translated(toppackage, 'title'), h.url_for(controller='package', action='read', id=toppackage.package_id)) }}</td>
 		<td>{{ toppackage.visit_date }}</td>
 		<td>{{ toppackage.visits }}</td>
 	   </tr>
