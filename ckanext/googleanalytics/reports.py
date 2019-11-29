@@ -1,4 +1,4 @@
-from ckan.common import OrderedDict
+from ckan.common import OrderedDict, _
 from ckan.plugins import toolkit
 from ckanext.googleanalytics.model import PackageStats, ResourceStats
 
