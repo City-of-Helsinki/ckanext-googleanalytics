@@ -72,25 +72,28 @@ class PackageStats(Base):
     
 
     @classmethod
-    def get_top(cls, limit=20, start_date=None, end_date=None, dataset_type='dataset'):
+    def get_top(cls, limit=None, start_date=None, end_date=None, dataset_type='dataset'):
         package_stats = []
         #TODO: Reimplement in more efficient manner if needed (using RANK OVER and PARTITION in raw sql)
-        unique_packages = model.Session.query(cls.package_id, func.count(cls.visits)).group_by(cls.package_id)
+        unique_packages = model.Session.query(cls.package_id, func.count(cls.visits))\
+            .filter(cls.package_id == model.Package.id).filter(model.Package.state == 'active').filter(model.Package.private == False)\
+            .filter(model.Package.type == dataset_type)\
+            .group_by(cls.package_id)
         if start_date:
             unique_packages = unique_packages.filter(cls.visit_date >= start_date)
         if end_date:
             unique_packages = unique_packages.filter(cls.visit_date <= end_date)
 
-        unique_packages.order_by(func.count(cls.visits).desc()).limit(limit).all()
+        unique_packages = unique_packages.order_by(func.count(cls.visits).desc())
+
+        if limit:
+            unique_packages = unique_packages.limit(limit)
+
         #Adding last date associated to this package stat and filtering out private and deleted packages 
         if unique_packages is not None:
             for package in unique_packages:
                 package_id = package[0]
                 visits = package[1]
-                
-                tot_package = model.Session.query(model.Package).filter(model.Package.id == package_id).filter_by(state='active').filter_by(private=False).filter_by(type=dataset_type).first()
-                if tot_package is None:
-                    continue
 
                 last_date = model.Session.query(func.max(cls.visit_date)).filter(cls.package_id == package_id)
                 if end_date:
