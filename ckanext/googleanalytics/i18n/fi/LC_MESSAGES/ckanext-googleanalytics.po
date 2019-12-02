@@ -25,11 +25,13 @@ msgstr ""
 
 #: ckanext/googleanalytics/reports.py:34
 msgid "Most popular datasets"
-msgstr "Suosituimmat datat"
+msgstr "Katsotuimmat datat"
 
 #: ckanext/googleanalytics/reports.py:35
 msgid "Google analytics showing top datasets with most views"
-msgstr "Katsotuimmat datat Google Analyticsin mukaan"
+msgstr ""
+"Katsotuimmat datat analysoituna Google Analyticsin tuottaman datan "
+"perusteella."
 
 #: ckanext/googleanalytics/reports.py:61
 msgid "Most popular resources"
@@ -37,7 +39,9 @@ msgstr "Ladatuimmat resurssit"
 
 #: ckanext/googleanalytics/reports.py:62
 msgid "Google analytics showing most downloaded resources"
-msgstr "Ladatuimmat resurssit Google Analyticsin mukaan"
+msgstr ""
+"Ladatuimmat resurssit analysoituna Google Analyticsin tuottaman datan "
+"perusteella."
 
 #: ckanext/googleanalytics/templates/googleanalytics/snippets/dataset_stats.html:3
 #: ckanext/googleanalytics/templates/googleanalytics/snippets/resource_stats.html:5
