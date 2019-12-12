@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-googleanalytics 0.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-11-29 08:05+0000\n"
+"POT-Creation-Date: 2019-12-12 10:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,22 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
-
-#: ckanext/googleanalytics/reports.py:34
-msgid "Most popular datasets"
-msgstr ""
-
-#: ckanext/googleanalytics/reports.py:35
-msgid "Google analytics showing top datasets with most views"
-msgstr ""
-
-#: ckanext/googleanalytics/reports.py:61
-msgid "Most popular resources"
-msgstr ""
-
-#: ckanext/googleanalytics/reports.py:62
-msgid "Google analytics showing most downloaded resources"
-msgstr ""
 
 #: ckanext/googleanalytics/templates/googleanalytics/snippets/dataset_stats.html:3
 #: ckanext/googleanalytics/templates/googleanalytics/snippets/resource_stats.html:5
