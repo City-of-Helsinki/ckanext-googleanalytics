@@ -47,6 +47,10 @@ def google_analytics_resource_report(last):
     # get resource objects corresponding to popular GA content
     top_resources = ResourceStats.get_top(limit=last)
 
+    for resource in top_resources.get("resources", []):
+        resource['resource'] = toolkit.get_action('resource_show')({"ignore_auth": True}, {"id": resource.get('resource_id')})
+        resource['package'] = toolkit.get_action('package_show')({"ignore_auth": True}, {"id": resource.get('package_id')})
+
     return {
         'table' : top_resources.get("resources")
     }
